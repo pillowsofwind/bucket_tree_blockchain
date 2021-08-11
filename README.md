@@ -146,7 +146,7 @@ In this part, we will use our data structures to replay 20 blocks of transaction
 
 ### Result
 
-![demo](Report.assets/demo-8595925.png)
+![demo](README.assets/demo-8595925.png)
 
 The figure above shows that times of hash done in MBT is a lot fewer than in BT. Approximately, `40%`of hash operations are reduced in our new data structure.
 
