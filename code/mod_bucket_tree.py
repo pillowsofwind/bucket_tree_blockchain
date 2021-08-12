@@ -29,11 +29,12 @@ class ModBucketTree(object):
         self.is_ready = False
         self.merkle_root_hash = None
         self.total_hash_times = 0
+        self.root_hash_times = 0
 
     def do_hash(self, input):
         # use sha256 as hash func
         # output hex value
-        self.total_hash_times += 1
+        self.root_hash_times += 1
         return hashlib.sha256(input.encode('utf8')).hexdigest()
 
     '''Filter functions'''
@@ -103,7 +104,7 @@ class ModBucketTree(object):
         # compute merkle root hash
         self.is_ready = True
         self.gen_merkle_root_hash()
-        # print('H bucket tree initiated.')
+        # print('Mod bucket tree initiated.')
 
     def gen_merkle_root_hash(self):
         # called if the whole block is ready
@@ -119,6 +120,7 @@ class ModBucketTree(object):
                 self.total_hash_times = (self.bucket_tree_1st.total_hash_times +
                                          self.bucket_tree_2nd.total_hash_times +
                                          self.bucket_tree_3rd.total_hash_times)
+                self.total_hash_times += self.root_hash_times
 
     def get_merkle_root_hash(self):
         return self.merkle_root_hash
